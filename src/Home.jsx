@@ -1,7 +1,7 @@
 import React from 'react'
 import { ContainerDiv } from './style/GlobalStyles'
 
-export default function Main() {
+function Home() {
   return (
     <>
         <ContainerDiv>
@@ -10,3 +10,5 @@ export default function Main() {
     </>
   )
 }
+
+export default Home;
