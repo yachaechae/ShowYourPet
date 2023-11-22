@@ -1,11 +1,12 @@
 import React from 'react'
-import { ContainerDiv } from './style/GlobalStyles'
+import { ContainerDiv} from './style/GlobalStyles'
+import CardForm from './components/CardForm';
 
 function Home() {
   return (
     <>
         <ContainerDiv>
-            컨테이너임
+          <CardForm />
         </ContainerDiv>
     </>
   )

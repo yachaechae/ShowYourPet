@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
- 
+import styled, { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+
 export const GlobalStyles = createGlobalStyle`
     ${reset}
     a{
@@ -24,8 +24,8 @@ export const GlobalStyles = createGlobalStyle`
         cursor: pointer;
     }
 `;
- 
+
 export const ContainerDiv = styled.div`
     width: 915px;
     margin: 0 auto;
-`
+`;
