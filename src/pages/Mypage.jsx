@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { ContainerDiv } from '../style/GlobalStyles';
+import MyapgeHeader from '../components/MyapgeHeader';
 
-function Mypage() {
-  return (
-    <div>Mypage</div>
-  )
+export default function Mypage() {
+    return (
+        <>
+            <ContainerDiv>
+                <MyapgeHeader />
+            </ContainerDiv>
+        </>
+    );
 }
-
-export default Mypage;
