@@ -8,6 +8,15 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const [email, setEmail] = useState('');
+
+    const Rest_api_key = '8f6f8d7af58f247447b8ce9f1dc4e03f'; //REST API KEY
+    const redirect_uri = 'http://localhost:3000/'; //Redirect URI
+    // oauth 요청 URL
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+    const handleLogin = () => {
+        window.location.href = kakaoURL;
+    };
+
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
@@ -27,13 +36,20 @@ export default function Login() {
     // 아이디와 비밀번호를 다시 확인해주세요" 가 나온다.
     const signIn = async (event) => {
         event.preventDefault();
+        if (email === '') {
+            return alert('이메일을 입력해주세요');
+        }
+        if (password === '') {
+            return alert('비밀번호를 입력해주세요');
+        }
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log('로그인이 되었습니다!!!!', userCredential.user);
         } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log('아이디와 비밀번호를 다시 확인해주세요', errorCode, errorMessage);
+            // console.log('아이디와 비밀번호를 다시 확인해주세요', errorCode, errorMessage);
+            // // return alert('비밀번호 또는 이메일을 확인해주세요');
         }
         navigate('/');
     };
@@ -46,8 +62,16 @@ export default function Login() {
             </InputWrapper>
             <InputWrapper>
                 <label>비밀번호</label>
-                <input type="password" value={password} name="password" onChange={onChange} required />
+                <input
+                    type="password"
+                    placeholder="비밀번호"
+                    value={password}
+                    name="password"
+                    onChange={onChange}
+                    required
+                />
             </InputWrapper>
+            <Button text="카카오 로그인" onClick={handleLogin}></Button>
             <Button onClick={signIn} text="로그인" />
             <Button
                 onClick={() => {
