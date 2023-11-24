@@ -33,12 +33,14 @@ export default function RagisterPage() {
         }
 
         try {
+            //   if 이메일 확인 식별자 확인해서 중복된 이메일입니다.
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             console.log('회원가입이 완료!', userCredential.user);
         } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log('회원가입을 실패!', errorCode, errorMessage);
+            return alert('해당 이메일로 가입된 계정이 있습니다.');
         }
         navigate('/');
     };
@@ -110,3 +112,5 @@ const InputWrapper = styled.div`
         padding: 12px;
     }
 `;
+
+//const findPw = async () => { try { await sendPasswordResetEmail(auth, email); alert('메일이 전송되었습니다.'); } catch (error) { console.log(error.code, error.message); a

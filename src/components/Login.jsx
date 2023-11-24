@@ -13,7 +13,7 @@ export default function Login() {
     const redirect_uri = 'http://localhost:3000/'; //Redirect URI
     // oauth 요청 URL
     const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
-    const handleLogin = () => {
+    const kakaohandleLogin = () => {
         window.location.href = kakaoURL;
     };
 
@@ -71,7 +71,8 @@ export default function Login() {
                     required
                 />
             </InputWrapper>
-            <Button text="카카오 로그인" onClick={handleLogin}></Button>
+            <Button text="카카오 로그인" onClick={kakaohandleLogin}></Button>
+            {/* <Button text="카카오 로그인" onClick={googlehandleLogin}></Button> */}
             <Button onClick={signIn} text="로그인" />
             <Button
                 onClick={() => {
