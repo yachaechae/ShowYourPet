@@ -1,21 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { PostCardForm, PostCardinputForm, PostCardTextarea, PostCardInput  } from '../style/CardFormStyles';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
-import { initializeApp } from 'firebase/app';
-
-// Firebase 설정 객체
-const firebaseConfig= {
-  apiKey: process.env.REACT_APP_FB_API_KEY,
-  authDomain: process.env.REACT_APP_FB_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 function PostCardUpdatepage() {
   const { id } = useParams();
@@ -31,6 +18,7 @@ function PostCardUpdatepage() {
         const docRef = doc(db, 'postCards', id);
         const snapshot = await getDoc(docRef);
 
+        
         // 콘솔에 데이터 출력
         const data = snapshot.data();
         if (snapshot.exists()) {
@@ -58,6 +46,7 @@ function PostCardUpdatepage() {
       // 수정한 게시물
       try {
         const docRef = doc(db, 'postCards', id)
+        console.log('확인2', docRef);
         const dataToupdate ={
           title,
           contents,

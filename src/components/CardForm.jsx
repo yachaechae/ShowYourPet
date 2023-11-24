@@ -1,26 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { PostCardForm, PostCardinputForm, PostCardTextarea, PostCardInput  } from '../style/CardFormStyles';
 import PostCard from './PostCard';
-import { v4 as uuidv4} from 'uuid';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc , getDocs } from 'firebase/firestore';
-
-// Firebase 설정 객체
-const firebaseConfig= {
-  apiKey: process.env.REACT_APP_FB_API_KEY,
-  authDomain: process.env.REACT_APP_FB_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID
-};
-
-// Firebase 앱 초기화
-const app = initializeApp(firebaseConfig);
-
-// Firestore 데이터베이스에 접근하기 위한 인스턴스를 얻어옴
-const db = getFirestore(app);
-
+import { collection, addDoc , getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
+ 
 function CardForm() {
   const [postCards, setPostCards] = useState([]); // 게시물 정보를 담은 상태
   const [title, setTitle] = useState(''); // 제목 상태
@@ -33,7 +16,7 @@ function CardForm() {
   const querySnapshot = await getDocs(collection(db, 'postCards'));
   const postData = [];
     querySnapshot.forEach((doc) => {
-      postData.push({ id: doc.id, ...doc.data() });
+      postData.push({ ...doc.data(), id: doc.id });
     });
     setPostCards(postData);
   };
@@ -52,7 +35,6 @@ function CardForm() {
       }
     // 새로운 게시물 카드 만들기
     const newPostCard = {
-      id: uuidv4(),
       title,
       contents,
       image: imagePreview,
@@ -71,7 +53,7 @@ function CardForm() {
       setImagePreview(null);
       // 문서 추가 중 오류 발생시 오류 메세지 출력
     } catch (e) {
-      console.error('Error adding document: ', e);
+      console.error('문서를 가져오는 중 오류가 발생했습니다. ', e);
     }
   };
 
