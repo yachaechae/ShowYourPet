@@ -52,7 +52,7 @@ function CardForm() {
       }
     // 새로운 게시물 카드 만들기
     const newPostCard = {
-      docId: uuidv4(),
+      id: uuidv4(),
       title,
       contents,
       image: imagePreview,

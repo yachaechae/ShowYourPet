@@ -1,12 +1,13 @@
-import React from 'react'
-import { PostCardBox,PostCardBoxContainer } from '../style/CardFormStyles';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { PostCardBox, PostCardBoxContainer } from '../style/CardFormStyles';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function PostCard({ postCards }) {
   const navigate = useNavigate();
+  const params = useParams();
 
-  const PostCardChangeHandler = (id) => {
-    navigate(`/postcardupdatepage/${id}`);
+  const PostCardChangeHandler = (docId) => {
+    navigate(`/postcardupdatepage/${docId}`);
   };
 
   return (
@@ -24,7 +25,7 @@ function PostCard({ postCards }) {
         <p>게시물이 없습니다.</p>
       )}
     </PostCardBoxContainer>
-  )
+  );
 }
 
 export default PostCard;
