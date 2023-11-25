@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import app from './firebase';
-import Router from './shared/Router';
+import Home from './Home';
 
 console.log('app', app);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Router />
+        <Home />
     </React.StrictMode>
 );
 
