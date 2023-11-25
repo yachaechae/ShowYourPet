@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
 export const GlobalStyles = createGlobalStyle`
@@ -18,14 +18,14 @@ export const GlobalStyles = createGlobalStyle`
     ol, ul{
         list-style: none;
     }
-    button {
-        border: 0;
-        background: transparent;
-        cursor: pointer;
-    }
 `;
 
 export const ContainerDiv = styled.div`
     width: 915px;
     margin: 0 auto;
+`;
+
+export const MasterBtn = css`
+    cursor: pointer;
+    border: 0;
 `;

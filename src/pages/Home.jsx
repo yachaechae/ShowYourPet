@@ -1,65 +1,76 @@
-import { useState } from 'react';
-import { ContainerDiv } from '../style/GlobalStyles';
 import { useNavigate } from 'react-router-dom';
+import { PiUserCircleLight, PiHouseLight } from 'react-icons/pi';
 import {
-  Commentbox,
-  Imgbox,
-  Postname,
-  Postbox,
-  Postmenu,
-  SideList,
-  LinkBtn,
-  Sidemenu,
-  FS,
-  RDbtn,
-  CI,
-  ULC
+    Commentbox,
+    Imgbox,
+    Postname,
+    Postbox,
+    Postmenu,
+    SideList,
+    LinkBtn,
+    Sidemenu,
+    MainContainer,
+    RDbtn,
+    CI,
+    ULC
 } from '../style/HomeSytles';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchPostCards } from 'redux/module/loadData';
+import { ContainerDiv } from 'style/GlobalStyles';
 
 function Home() {
-  const [SideList] = useState('');
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-  const goHome = () => {
-    navigate('/home');
-  };
-  const goLogin = () => {
-    navigate('/login');
-  };
+    // useEffect(() => {
+    //     dispatch(fetchPostCards());
+    // }, []);
 
-  const linkBtn = (e) => {
-    console.log(e.target.name);
+    // console.log(fetchPostCards());
 
-    navigate(`/${e.target.name}`);
-  };
-  return (
-    <>
-      <FS>
-        <Sidemenu>
-          <p>{SideList}</p>
-          <LinkBtn name="home">Home</LinkBtn>
-          <LinkBtn name="login">Login</LinkBtn>
-          <LinkBtn name="mypage">Mypage</LinkBtn>
-          <LinkBtn name="postWrite">PostWrite</LinkBtn>
-        </Sidemenu>
-        <Postmenu>
-          <Postbox>
-            <Postname>
-              <span>대충 게시물이름</span>
-              <RDbtn>...</RDbtn>
-            </Postname>
-            <Imgbox>
-              <img />
-            </Imgbox>
-            <Commentbox>
-              <CI></CI>
-              <ULC>댓글올리기</ULC>
-            </Commentbox>
-          </Postbox>
-        </Postmenu>
-      </FS>
-    </>
-  );
+    fetchPostCards();
+
+    const linkBtn = (e) => {
+        const pageName = e.target.name;
+        if (pageName == 'home') {
+            navigate(`/`);
+        } else navigate(`/${pageName}`);
+    };
+    return (
+        <>
+            <MainContainer>
+                <Sidemenu>
+                    <LinkBtn name="home" onClick={linkBtn}>
+                        <PiHouseLight />
+                        Home
+                    </LinkBtn>
+                    <LinkBtn name="mypage" onClick={linkBtn}>
+                        <PiUserCircleLight />
+                        Mypage
+                    </LinkBtn>
+                    <LinkBtn name="postcardpage" onClick={linkBtn}>
+                        자랑하기
+                    </LinkBtn>
+                </Sidemenu>
+                <ContainerDiv>
+                    <Postbox>
+                        <Postname>
+                            <span>대충 게시물이름</span>
+                            <RDbtn>...</RDbtn>
+                        </Postname>
+                        <Imgbox>
+                            <img />
+                        </Imgbox>
+                        <Commentbox>
+                            <CI></CI>
+                            <ULC>댓글올리기</ULC>
+                        </Commentbox>
+                    </Postbox>
+                </ContainerDiv>
+            </MainContainer>
+        </>
+    );
 }
 
 export default Home;

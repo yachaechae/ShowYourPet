@@ -1,7 +1,7 @@
 // 중앙 데이터 관리소(store) 설정 하는 부분
 import { createStore } from 'redux';
 import { combineReducers } from 'redux';
-import selectMember from 'redux/modules/member'; // member.js에서 selectMember를 가져옴
+import rootReducer from './module/reducer';
 
 /*
 1. createStore()
@@ -17,9 +17,6 @@ import selectMember from 'redux/modules/member'; // member.js에서 selectMember
 combineReducers은 여러 개의 독립적인 reducer의 반환 값을 하나의 상태 객체로 만들어줍니다.
 */
 
-const rootReducer = combineReducers({
-    selectMember // state 모음
-});
 const store = createStore(rootReducer);
 
 export default store;
