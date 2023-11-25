@@ -1,7 +1,5 @@
 import React from 'react';
 import { ChangeImg, Image, Info, MypageHeader } from '../style/MypageStyles';
-import MyPageBody from './MyPageBody';
-
 export default function MyPageHeader() {
     return (
         <>

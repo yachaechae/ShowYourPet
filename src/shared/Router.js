@@ -1,9 +1,11 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Mypage from '../pages/Mypage';
-import Home from '../Home';
+import Home from 'pages/Home';
+import Login from 'pages/Login';
+import Mypage from 'pages/Mypage';
 import PostCardPage from 'pages/PostCardPage';
 import PostCardUpdatepage from 'pages/PostCardUpdatepage';
+import RagisterPage from 'pages/RagisterPage';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 export default function Router() {
     return (

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Button from './common/Button';
-import { auth } from '../firebase';
+import { firebaseAuth } from '../firebase';
 import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import Button from 'components/common/Button';
 
 export default function RagisterPage() {
     const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ export default function RagisterPage() {
     //const checkpassword if 다르면 일치하지 않습니다.
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(firebaseAuth, (user) => {
             console.log('user', user);
         });
     }, []);
@@ -34,7 +34,7 @@ export default function RagisterPage() {
 
         try {
             //   if 이메일 확인 식별자 확인해서 중복된 이메일입니다.
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password);
             console.log('회원가입이 완료!', userCredential.user);
         } catch (error) {
             const errorCode = error.code;

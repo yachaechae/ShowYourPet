@@ -2,15 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import app from './firebase';
-import Home from './Home';
-
-console.log('app', app);
+import Router from 'shared/Router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Home />
+        <Router />
     </React.StrictMode>
 );
 

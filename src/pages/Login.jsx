@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from './common/Button';
 import { useState } from 'react';
-import { auth } from '../firebase';
+import { firebaseAuth } from '../firebase';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import Button from 'components/common/Button';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -43,7 +43,7 @@ export default function Login() {
             return alert('비밀번호를 입력해주세요');
         }
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password);
             console.log('로그인이 되었습니다!!!!', userCredential.user);
         } catch (error) {
             const errorCode = error.code;
