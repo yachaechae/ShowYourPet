@@ -1,7 +1,8 @@
 import React from 'react';
 import { ChangeImg, Image, Info, MypageHeader } from '../style/MypageStyles';
+import MyPageBody from './MyPageBody';
 
-export default function MyapgeHeader() {
+export default function MyPageHeader() {
     return (
         <>
             <MypageHeader as="form">
