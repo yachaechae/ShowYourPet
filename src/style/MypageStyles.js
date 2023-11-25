@@ -20,3 +20,6 @@ export const Info = styled.div`
     display: flex;
     align-items: center;
 `;
+export const MypageBody = styled.section``;
+
+export const MyWritings = styled.div``;
