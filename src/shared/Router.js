@@ -11,6 +11,8 @@ export default function Router() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/register" element={<RagisterPage />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="/mypage" element={<Mypage />} />
                     <Route path="/postcardpage" element={<PostCardPage />} />
                     <Route path="/postcardupdatepage/:id" element={<PostCardUpdatepage />} />
