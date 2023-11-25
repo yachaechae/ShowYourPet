@@ -1,12 +1,14 @@
 import React from 'react';
 import { ContainerDiv } from '../style/GlobalStyles';
-import MyapgeHeader from '../components/MyapgeHeader';
+import MyPageHeader from '../components/MyPageHeader';
+import MyPageBody from 'components/MyPageBody';
 
 export default function Mypage() {
     return (
         <>
             <ContainerDiv>
-                <MyapgeHeader />
+                <MyPageHeader />
+                <MyPageBody></MyPageBody>
             </ContainerDiv>
         </>
     );
