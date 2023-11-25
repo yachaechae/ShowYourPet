@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from '../pages/Home';
+import RagisterPage from '../pages/RagisterPage';
+import Login from '../pages/Login';
 import Mypage from '../pages/Mypage';
-import Home from '../Home';
-import PostCardPage from 'pages/PostCardPage';
-import PostCardUpdatepage from 'pages/PostCardUpdatepage';
+import PostCardPage from '../pages/PostCardPage';
+import PostCardUpdatepage from '../pages/PostCardUpdatepage';
 
 export default function Router() {
     return (
