@@ -16,3 +16,5 @@ export const fetchPostCards = () => {
         dispatch(getPost(postData));
     };
 };
+
+export const loadPostCards = () => {};

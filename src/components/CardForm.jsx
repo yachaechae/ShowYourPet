@@ -3,6 +3,7 @@ import { PostCardForm, PostCardinputForm, PostCardTextarea, PostCardInput  } fro
 import PostCard from './PostCard';
 import { collection, addDoc , getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
+import { fetchPostCards } from 'redux/module/loadData';
  
 function CardForm() {
   const [postCards, setPostCards] = useState([]); // 게시물 정보를 담은 상태
@@ -11,7 +12,7 @@ function CardForm() {
   const [image, setImage] = useState(null); // 이미지 파일 상태
   const [imagePreview, setImagePreview] = useState(null); // 이미지 미리보기 상태
 
-  // Firebase에서 데이터를 불러오는 함수
+  // Firebase에서 데이터를 불러오는 함수 <- 리덕스에 저장되어야 하는 데이터 fetchPostCards를 통해서 postData 
   const fetchPostCards = async () => {
   const querySnapshot = await getDocs(collection(db, 'postCards'));
   const postData = [];

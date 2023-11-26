@@ -1,10 +1,10 @@
 import React from 'react'
-import PostCard from 'components/PostCard'
+import CardForm from 'components/CardForm';
 
-function PostCardPage({ postCards }) {
+function PostCardPage() {
   return (
     <>
-        <PostCard postCards={postCards}/>
+        <CardForm />
     </>
   )
 }

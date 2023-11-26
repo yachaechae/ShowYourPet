@@ -23,13 +23,9 @@ function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(fetchPostCards());
-    // }, []);
-
-    // console.log(fetchPostCards());
-
-    fetchPostCards();
+    useEffect(() => {
+        fetchPostCards()(dispatch);
+    }, []);
 
     const linkBtn = (e) => {
         const pageName = e.target.name;
