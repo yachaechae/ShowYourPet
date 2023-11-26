@@ -23,12 +23,14 @@ function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const postList = useSelector((state) => state.postList);
+    // dispatch(fetchPostCards());
+    // console.log(postList);
 
     useEffect(() => {
         fetchPostCards()(dispatch);
     }, []);
 
-    console.log(postList);
+    // console.log(postList);
 
     const linkBtn = (e) => {
         const pageName = e.target.name;

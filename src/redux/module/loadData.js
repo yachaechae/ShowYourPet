@@ -1,5 +1,4 @@
 import { collection, doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-
 import { db } from '../../firebase';
 import { getPost } from './action';
 
@@ -15,6 +14,13 @@ export const fetchPostCards = () => {
         console.log(postData);
         dispatch(getPost(postData));
     };
+};
+
+export const performValidation = (contents, title) => {
+    if (!contents && !title) {
+        return false;
+    }
+    return true;
 };
 
 export const loadPostCards = () => {};

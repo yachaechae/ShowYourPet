@@ -3,6 +3,9 @@ import { PostCardForm, PostCardinputForm, PostCardTextarea, PostCardInput  } fro
 import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { addImg } from 'redux/module/action';
+import { performValidation } from 'redux/module/loadData';
+import { useDispatch } from 'react-redux';
 
 function PostCardUpdatepage() {
   const { id } = useParams();
@@ -11,6 +14,7 @@ function PostCardUpdatepage() {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null); // 이미지 미리보기 상태
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +22,6 @@ function PostCardUpdatepage() {
         const docRef = doc(db, 'postCards', id);
         const snapshot = await getDoc(docRef);
 
-        
         // 콘솔에 데이터 출력
         const data = snapshot.data();
         if (snapshot.exists()) {
@@ -39,20 +42,22 @@ function PostCardUpdatepage() {
     const updateCompleteHandler = async (event) => {
       // 새로고침 방지
       event.preventDefault();
-        //유효성 검사
-        if(!contents && !title) {
-          return alert('내용과 제목을 입력해주세요.');
-        }
+    
+    // performValidation 함수를 통해 유효성 검사를 수행하고 유효성 여부를 반환받음
+    const isValid = performValidation(contents, title);
+    if (!isValid) {
+      alert('제목과 내용이 입력되지 않았습니다.');
+      return;
+    }
       // 수정한 게시물
       try {
         const docRef = doc(db, 'postCards', id)
-        console.log('확인2', docRef);
         const dataToupdate ={
           title,
           contents,
           image: imagePreview,
         }
-
+        
         await updateDoc(docRef, dataToupdate)
         navigate(`/`);
       } catch (error){
@@ -61,16 +66,21 @@ function PostCardUpdatepage() {
     }
 
     // 이미지 업로드 호출 함수
-  const handleImageChange = (event) => {
+  const handleImageAdd = (event) => {
     const selectedImage = event.target.files[0];
-    setImage(selectedImage);
-
+    
     // 이미지 미리보기 생성
     const reader = new FileReader();
     reader.onloadend = () => {
       setImagePreview(reader.result); // 이미지 미리보기에 Base64 데이터 사용
+      dispatch(addImg(selectedImage, imagePreview));
     };
-    reader.readAsDataURL(selectedImage);
+    if (selectedImage !== undefined) {
+      reader.readAsDataURL(selectedImage);
+    } else {
+      setImage(null);
+      setImagePreview(null);
+    }
   };
 
   return (
@@ -83,7 +93,7 @@ function PostCardUpdatepage() {
       <PostCardTextarea value={contents} onChange={(e) => setContents(e.target.value)} />
       {image && <img src={image} alt="" style={{maxWidth: '100px', maxHeight: '100px'}} />}
       {image && <img src={imagePreview} style={{maxWidth: '100px', maxHeight: '100px'}} />}
-      <input type='file'accept='image/*' onChange={handleImageChange} />
+      <input type='file'accept='image/*' onChange={handleImageAdd} />
       <button onClick={updateCompleteHandler}>수정완료</button>
       </PostCardinputForm>
     </PostCardForm>
