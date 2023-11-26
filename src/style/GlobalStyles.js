@@ -1,8 +1,6 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
-import GiantsInline from '../fonts/Giants-Inline.otf';
-
 export const GlobalStyles = createGlobalStyle`
     @font-face {
     font-family: 'IM_Hyemin-Bold';
