@@ -10,8 +10,12 @@ export const MypageHeader = styled.section`
 export const Image = styled.div`
     position: relative;
     width: 300px;
+    height: 300px;
     & img {
-        width: 100%;
+        width: 300px;
+        height: 300px;
+        background: #000;
+        object-fit: contain;
         border-radius: 50%;
     }
     &:hover .changeForm {
