@@ -1,8 +1,8 @@
-import { ADD_MEMBER, ADD_POST, GET_POST, LOGIN_INFO, VALIDATION_ERROR } from './action';
+import { ADD_MEMBER, ADD_POST, GET_POST, LOGIN_INFO, VALIDATION_ERROR, DELETE_POST } from './action';
 
 const initialState = {
     postList: [],
-    postData: { content: '', id: '', image: '', title: '', createdAt: '' },
+    postData: { content: '', id: '', image: '', title: '', createdAt: '', userId: '', userName: '' },
     validationError: ''
 };
 
@@ -30,6 +30,16 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 validationError: action.payload
             };
+
+        case DELETE_POST: {
+            const postIdToDelete = action.payload;
+            const updatedPostList = state.postList.filter((post) => post.id !== postIdToDelete);
+            return {
+                ...state,
+                postList: updatedPostList
+            };
+        }
+
         default:
             return state;
     }

@@ -3,6 +3,7 @@ export const ADD_MEMBER = 'redux/action/ADD_MEMBER';
 export const ADD_POST = 'redux/action/ADD_POST';
 export const GET_POST = 'redux/action/GET_POST';
 export const ADD_IMG = 'redux/action/ADD_IMG';
+export const DELETE_POST = 'redux/action/DELETE_POST';
 export const VALIDATION_ERROR = 'redux/action/VALIDATION_ERROR';
 
 export const loginLinfo = (data) => ({
@@ -33,4 +34,9 @@ export const addImg = (selectedImage, imagePreview) => ({
 export const validationError = (message) => ({
     type: VALIDATION_ERROR,
     payload: message
+});
+
+export const deletePost = (postId) => ({
+    type: DELETE_POST,
+    payload: postId
 });
