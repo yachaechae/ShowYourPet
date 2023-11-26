@@ -10,7 +10,6 @@ export default function MyPageBody() {
     return !myPost.length === 0 ? (
         <MypageBody>
             {myPost.map((postCard) => {
-                console.log(postCard.uid === userId);
                 return (
                     <MyWritings>
                         <img src={postCard.image} alt="" />

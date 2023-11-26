@@ -20,7 +20,6 @@ function Home() {
                 <SideMenu />
                 <ContainerDiv $width="500" $Lpadding="350">
                     {sortedPostList.map((postCard) => {
-                        console.log(postCard.userName);
                         return (
                             <>
                                 <Postbox>

@@ -14,12 +14,6 @@ export default function RagisterPage() {
     const navigate = useNavigate();
     //const checkpassword if 다르면 일치하지 않습니다.
 
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            console.log('user', user);
-        });
-    }, []);
-
     const signUp = async (event) => {
         event.preventDefault();
 
@@ -37,11 +31,9 @@ export default function RagisterPage() {
         try {
             //   if 이메일 확인 식별자 확인해서 중복된 이메일입니다.
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            console.log('회원가입이 완료!', userCredential.user);
         } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log('회원가입을 실패!', errorCode, errorMessage);
             return alert('해당 이메일로 가입된 계정이 있습니다.');
         }
         navigate('/');

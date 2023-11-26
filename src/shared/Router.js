@@ -8,11 +8,19 @@ import PostCardPage from '../pages/PostCardPage';
 import PostCardUpdatepage from '../pages/PostCardUpdatepage';
 import { useDispatch } from 'react-redux';
 import { fetchPostCards } from 'redux/module/loadData';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase';
+import { signIn } from 'redux/module/auth';
 
 export default function Router() {
     const dispatch = useDispatch();
     useEffect(() => {
         fetchPostCards()(dispatch);
+        onAuthStateChanged(auth, (user) => {
+            if (user !== null) {
+                dispatch(signIn(user));
+            }
+        });
     }, []);
 
     return (
