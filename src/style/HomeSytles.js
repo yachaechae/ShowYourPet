@@ -49,7 +49,15 @@ export const PostInfo = styled.div`
     }
 `;
 
-export const User = styled.div``;
+export const PostHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+    & .userName {
+        font-size: 1.5rem;
+    }
+`;
 
 export const Postname = styled.span`
     flex-direction: row;

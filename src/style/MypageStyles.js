@@ -26,6 +26,10 @@ export const MypageBody = styled.section`
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+    & h2 {
+        text-align: center;
+        width: 100%;
+    }
 `;
 
 export const MyWritings = styled.div`

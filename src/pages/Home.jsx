@@ -1,62 +1,43 @@
-import { useNavigate } from 'react-router-dom';
-import { PiUserCircle, PiHouse, PiPencilLine } from 'react-icons/pi';
-import { Postbox, LinkBtn, Sidemenu, MainContainer, PostInfo, User } from '../style/HomeSytles';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPostCards } from 'redux/module/loadData';
+import { Postbox, MainContainer, PostInfo, User, PostHeader } from '../style/HomeSytles';
+import { useSelector } from 'react-redux';
 import { ContainerDiv } from 'style/GlobalStyles';
+import SideMenu from 'components/common/SideMenu';
+import { Firestore } from 'firebase/firestore';
+import { PiDotsThreeVertical } from 'react-icons/pi';
 
 const sortPostsByTime = (posts) => {
     return posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 };
 
 function Home() {
-    const navigate = useNavigate();
     const postList = useSelector((state) => state.post.postList);
-    const user = useSelector((state) => state.auth.user);
-    console.log(user);
-
-    const linkBtn = (e) => {
-        const pageName = e.target.name;
-        if (pageName == 'home') {
-            navigate(`/`);
-        } else if (!user) {
-            navigate('/login');
-        } else navigate(`/${pageName}`);
-    };
-
+    const userList = useSelector((state) => state.auth.user);
     const sortedPostList = sortPostsByTime(postList);
 
     return (
         <>
             <MainContainer>
-                <Sidemenu>
-                    <LinkBtn name="home" onClick={linkBtn}>
-                        <PiHouse />
-                        HOME
-                    </LinkBtn>
-                    <LinkBtn name="mypage" onClick={linkBtn}>
-                        <PiUserCircle />
-                        MYPAGE
-                    </LinkBtn>
-                    <LinkBtn name="postcardpage" onClick={linkBtn}>
-                        <PiPencilLine />
-                        WRITE
-                    </LinkBtn>
-                </Sidemenu>
+                <SideMenu />
                 <ContainerDiv $width="500" $Lpadding="350">
                     {sortedPostList.map((postCard) => {
-                        console.log(postCard);
+                        console.log(postCard.userName);
                         return (
-                            <Postbox>
-                                <img src={postCard.image} alt="" />
-                                <PostInfo>
-                                    <User></User>
-                                    <div className="title">{postCard.title}</div>
-                                    {postCard.contents}
-                                    <div>작성 시간: {new Date(postCard.createdAt).toLocaleString()}</div>
-                                </PostInfo>
-                            </Postbox>
+                            <>
+                                <Postbox>
+                                    <PostHeader>
+                                        <div className="userName">{postCard.userName}</div>
+                                        <div className="option">
+                                            <PiDotsThreeVertical size={30} />
+                                        </div>
+                                    </PostHeader>
+                                    <img src={postCard.image} alt="" />
+                                    <PostInfo>
+                                        <div className="title">{postCard.title}</div>
+                                        {postCard.contents}
+                                        <div>작성 시간: {new Date(postCard.createdAt).toLocaleString()}</div>
+                                    </PostInfo>
+                                </Postbox>
+                            </>
                         );
                     })}
                 </ContainerDiv>
