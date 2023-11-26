@@ -15,17 +15,20 @@ import {
     ULC
 } from '../style/HomeSytles';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostCards } from 'redux/module/loadData';
 import { ContainerDiv } from 'style/GlobalStyles';
 
 function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const postList = useSelector((state) => state.postList);
 
     useEffect(() => {
         fetchPostCards()(dispatch);
     }, []);
+
+    console.log(postList);
 
     const linkBtn = (e) => {
         const pageName = e.target.name;

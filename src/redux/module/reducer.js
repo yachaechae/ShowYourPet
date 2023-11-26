@@ -1,6 +1,7 @@
 import { ADD_MEMBER, ADD_POST, GET_POST, LOGIN_INFO } from './action';
 
 const initialState = {
+    postList: [],
     postData: { content: '', id: '', image: '', title: '' }
 };
 
@@ -10,7 +11,7 @@ const rootReducer = (state = initialState, action) => {
             const { email, password } = action.payload;
             return {};
         case GET_POST: {
-            return { postList: action.postList };
+            return { postList: action.payload };
         }
 
         default:
