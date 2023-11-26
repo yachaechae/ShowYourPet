@@ -1,19 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { PiUserCircleLight, PiHouseLight } from 'react-icons/pi';
-import {
-    Commentbox,
-    Imgbox,
-    Postname,
-    Postbox,
-    Postmenu,
-    SideList,
-    LinkBtn,
-    Sidemenu,
-    MainContainer,
-    RDbtn,
-    CI,
-    ULC
-} from '../style/HomeSytles';
+import { PiUserCircle, PiHouse, PiPencilLine } from 'react-icons/pi';
+import { Postbox, LinkBtn, Sidemenu, MainContainer, PostInfo, User } from '../style/HomeSytles';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostCards } from 'redux/module/loadData';
@@ -28,8 +15,6 @@ function Home() {
         fetchPostCards()(dispatch);
     }, []);
 
-    console.log(postList);
-
     const linkBtn = (e) => {
         const pageName = e.target.name;
         if (pageName == 'home') {
@@ -41,31 +26,32 @@ function Home() {
             <MainContainer>
                 <Sidemenu>
                     <LinkBtn name="home" onClick={linkBtn}>
-                        <PiHouseLight />
-                        Home
+                        <PiHouse />
+                        HOME
                     </LinkBtn>
                     <LinkBtn name="mypage" onClick={linkBtn}>
-                        <PiUserCircleLight />
-                        Mypage
+                        <PiUserCircle />
+                        MYPAGE
                     </LinkBtn>
                     <LinkBtn name="postcardpage" onClick={linkBtn}>
-                        자랑하기
+                        <PiPencilLine />
+                        WRITE
                     </LinkBtn>
                 </Sidemenu>
-                <ContainerDiv>
-                    <Postbox>
-                        <Postname>
-                            <span>대충 게시물이름</span>
-                            <RDbtn>...</RDbtn>
-                        </Postname>
-                        <Imgbox>
-                            <img />
-                        </Imgbox>
-                        <Commentbox>
-                            <CI></CI>
-                            <ULC>댓글올리기</ULC>
-                        </Commentbox>
-                    </Postbox>
+                <ContainerDiv $width="500" $Lpadding="350">
+                    {postList.map((postCard) => {
+                        console.log(postCard);
+                        return (
+                            <Postbox>
+                                <img src={postCard.image} alt="" />
+                                <PostInfo>
+                                    <User></User>
+                                    <div className="title">{postCard.title}</div>
+                                    {postCard.contents}
+                                </PostInfo>
+                            </Postbox>
+                        );
+                    })}
                 </ContainerDiv>
             </MainContainer>
         </>
