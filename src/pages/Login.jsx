@@ -5,9 +5,12 @@ import { useState } from 'react';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signIn as signInActionCreator } from 'redux/module/auth';
 
 export default function Login() {
     const [email, setEmail] = useState('');
+    const dispatch = useDispatch();
 
     const Rest_api_key = '8f6f8d7af58f247447b8ce9f1dc4e03f'; //REST API KEY
     const redirect_uri = 'http://localhost:3000/'; //Redirect URI
@@ -19,6 +22,10 @@ export default function Login() {
 
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+
+    const login = () => {
+        dispatch({ type: 'LOGIN' });
+    };
 
     const onChange = (event) => {
         const {
@@ -44,7 +51,8 @@ export default function Login() {
         }
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            console.log('로그인이 되었습니다!!!!', userCredential.user);
+            const signinAction = signInActionCreator(userCredential.user);
+            dispatch(signinAction);
         } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
