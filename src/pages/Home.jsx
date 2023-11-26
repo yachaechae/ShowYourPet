@@ -1,19 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { PiUserCircle, PiHouse, PiPencilLine } from 'react-icons/pi';
 import { Postbox, LinkBtn, Sidemenu, MainContainer, PostInfo, User } from '../style/HomeSytles';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPostCards } from 'redux/module/loadData';
+import { useSelector } from 'react-redux';
 import { ContainerDiv } from 'style/GlobalStyles';
 
 function Home() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const postList = useSelector((state) => state.postList);
-
-    useEffect(() => {
-        fetchPostCards()(dispatch);
-    }, []);
 
     const linkBtn = (e) => {
         const pageName = e.target.name;
