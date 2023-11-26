@@ -8,6 +8,10 @@ function Home() {
     const navigate = useNavigate();
     const postList = useSelector((state) => state.postList);
 
+    useEffect(() => {
+        fetchPostCards()(dispatch);
+    }, []);
+
     const linkBtn = (e) => {
         const pageName = e.target.name;
         if (pageName == 'home') {
