@@ -25,7 +25,7 @@ export const MypageBody = styled.section`
     margin: 3rem 0 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.46rem;
+    gap: 0.4rem;
 `;
 
 export const MyWritings = styled.div`
