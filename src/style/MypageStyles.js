@@ -8,14 +8,40 @@ export const MypageHeader = styled.section`
     margin: 2rem 0 0;
 `;
 export const Image = styled.div`
-    background: #121212;
+    position: relative;
+    width: 300px;
     & img {
+        width: 100%;
         border-radius: 50%;
     }
+    &:hover .changeForm {
+        display: flex;
+        align-items: center;
+    }
+    & .changeForm {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #00000080;
+    }
+    & .changeForm label {
+        font-size: 1.5rem;
+        color: #fff;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    & .changeForm input[type='file'] {
+        visibility: hidden;
+        width: 0;
+    }
 `;
-export const ChangeImg = styled.div`
-    background: #fff;
-`;
+
 export const Info = styled.div`
     width: 100%;
     display: flex;

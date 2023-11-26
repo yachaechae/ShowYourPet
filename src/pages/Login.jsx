@@ -58,7 +58,6 @@ export default function Login() {
         } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
-            // console.log('아이디와 비밀번호를 다시 확인해주세요', errorCode, errorMessage);
             // // return alert('비밀번호 또는 이메일을 확인해주세요');
         }
         navigate('/');
