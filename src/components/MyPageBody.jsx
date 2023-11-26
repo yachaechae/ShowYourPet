@@ -1,15 +1,15 @@
+import { auth } from '../firebase';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { MyWritings, MypageBody } from 'style/MypageStyles';
 
 export default function MyPageBody() {
     const postList = useSelector((state) => state.post.postList);
-    const userId = useSelector((state) => state.auth.user.uid);
-    const myPost = postList.filter((post) => post.uid === userId);
-
-    return !myPost.length === 0 ? (
+    const myPost = postList.filter((post) => post.userId === auth.currentUser.uid);
+    return myPost.length > 0 ? (
         <MypageBody>
             {myPost.map((postCard) => {
+                console.log(postCard);
                 return (
                     <MyWritings>
                         <img src={postCard.image} alt="" />
