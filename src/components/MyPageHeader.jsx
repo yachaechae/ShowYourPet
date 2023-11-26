@@ -1,8 +1,16 @@
 import React from 'react';
 import { ChangeImg, Image, Info, MypageHeader } from '../style/MypageStyles';
 import MyPageBody from './MyPageBody';
+import { useSelector } from 'react-redux';
 
 export default function MyPageHeader() {
+    const user = useSelector((state) => {
+        console.log('state', state);
+        return state.auth.user;
+    });
+
+    if (user === null) return null;
+
     return (
         <>
             <MypageHeader as="form">
@@ -13,7 +21,7 @@ export default function MyPageHeader() {
                     />
                     <ChangeImg></ChangeImg>
                 </Image>
-                <Info>이름</Info>
+                <Info>{user.email}님</Info>
             </MypageHeader>
         </>
     );
