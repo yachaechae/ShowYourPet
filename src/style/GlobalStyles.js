@@ -20,11 +20,12 @@ export const GlobalStyles = createGlobalStyle`
     }
 `;
 
+const defaultWidth = 915;
 export const ContainerDiv = styled.div`
-    width: 915px;
+    width: ${(props) => props.$width || defaultWidth}px;
+    padding-left: ${(props) => props.$Lpadding || 0}px;
     margin: 0 auto;
 `;
-
 export const MasterBtn = css`
     cursor: pointer;
     border: 0;

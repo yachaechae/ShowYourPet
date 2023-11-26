@@ -1,10 +1,23 @@
 import React from 'react';
-import { MypageBody } from 'style/MypageStyles';
+import { useSelector } from 'react-redux';
+import { MyWritings, MypageBody } from 'style/MypageStyles';
 
 export default function MyPageBody() {
+    const postList = useSelector((state) => state.postList);
     return (
-        <>
-            <MypageBody></MypageBody>
-        </>
+        <MypageBody>
+            {postList.map((postCard) => {
+                console.log(postCard);
+                return (
+                    <MyWritings>
+                        <img src={postCard.image} alt="" />
+                        <div className="info">
+                            <div className="title">{postCard.title}</div>
+                            {postCard.contents}
+                        </div>
+                    </MyWritings>
+                );
+            })}
+        </MypageBody>
     );
 }
