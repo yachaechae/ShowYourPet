@@ -6,12 +6,16 @@ import { ContainerDiv } from 'style/GlobalStyles';
 
 function Home() {
     const navigate = useNavigate();
-    const postList = useSelector((state) => state.postList);
+    const postList = useSelector((state) => state.post.postList);
+    const user = useSelector((state) => state.auth.user);
+    console.log(user);
 
     const linkBtn = (e) => {
         const pageName = e.target.name;
         if (pageName == 'home') {
             navigate(`/`);
+        } else if (!user) {
+            navigate('/login');
         } else navigate(`/${pageName}`);
     };
     return (

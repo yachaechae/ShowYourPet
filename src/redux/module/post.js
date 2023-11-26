@@ -6,7 +6,7 @@ const initialState = {
     validationError: ''
 };
 
-const rootReducer = (state = initialState, action) => {
+const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN_INFO:
             const { email, password } = action.payload;
@@ -28,4 +28,4 @@ const rootReducer = (state = initialState, action) => {
     }
 };
 
-export default rootReducer;
+export default postReducer;

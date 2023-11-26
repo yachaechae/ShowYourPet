@@ -7,6 +7,8 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signIn as signInActionCreator } from 'redux/module/auth';
+import { Form, InputWrapper, LoginContainer } from 'style/LoginStyles';
+import Title from 'components/common/Title';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -63,56 +65,34 @@ export default function Login() {
     };
 
     return (
-        <Form>
-            <InputWrapper>
-                <label>이메일</label>
-                <input type="email" value={email} name="email" onChange={onChange} required />
-            </InputWrapper>
-            <InputWrapper>
-                <label>비밀번호</label>
-                <input
-                    type="password"
-                    placeholder="비밀번호"
-                    value={password}
-                    name="password"
-                    onChange={onChange}
-                    required
+        <LoginContainer>
+            <Title />
+            <Form>
+                <InputWrapper>
+                    <label>이메일</label>
+                    <input type="email" value={email} name="email" onChange={onChange} required />
+                </InputWrapper>
+                <InputWrapper>
+                    <label>비밀번호</label>
+                    <input
+                        type="password"
+                        placeholder="비밀번호"
+                        value={password}
+                        name="password"
+                        onChange={onChange}
+                        required
+                    />
+                </InputWrapper>
+                <Button text="카카오 로그인" onClick={kakaohandleLogin}></Button>
+                {/* <Button text="카카오 로그인" onClick={googlehandleLogin}></Button> */}
+                <Button onClick={signIn} text="로그인" />
+                <Button
+                    onClick={() => {
+                        navigate('/register');
+                    }}
+                    text="회원가입"
                 />
-            </InputWrapper>
-            <Button text="카카오 로그인" onClick={kakaohandleLogin}></Button>
-            {/* <Button text="카카오 로그인" onClick={googlehandleLogin}></Button> */}
-            <Button onClick={signIn} text="로그인" />
-            <Button
-                onClick={() => {
-                    navigate('/register');
-                }}
-                text="회원가입"
-            />
-        </Form>
+            </Form>
+        </LoginContainer>
     );
 }
-
-const Form = styled.form`
-    background-color: whitesmoke;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 500px;
-    border-radius: 12px;
-    margin: 20px 0;
-`;
-
-const InputWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    & label {
-        width: 80px;
-    }
-    & input,
-    textarea {
-        width: 100%;
-        padding: 12px;
-    }
-`;

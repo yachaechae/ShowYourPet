@@ -4,6 +4,8 @@ import Button from '../components/common/Button';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { Form, InputWrapper, LoginContainer } from 'style/LoginStyles';
+import Title from 'components/common/Title';
 
 export default function RagisterPage() {
     const [email, setEmail] = useState('');
@@ -46,7 +48,8 @@ export default function RagisterPage() {
     };
 
     return (
-        <div>
+        <LoginContainer>
+            <Title />
             <Form>
                 회원가입
                 <InputWrapper>
@@ -84,33 +87,6 @@ export default function RagisterPage() {
                 </InputWrapper>
                 <Button onClick={signUp} text="회원가입" />
             </Form>
-        </div>
+        </LoginContainer>
     );
 }
-
-const Form = styled.form`
-    background-color: whitesmoke;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 500px;
-    border-radius: 12px;
-    margin: 20px 0;
-`;
-
-const InputWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    & label {
-        width: 80px;
-    }
-    & input,
-    textarea {
-        width: 100%;
-        padding: 12px;
-    }
-`;
-
-//const findPw = async () => { try { await sendPasswordResetEmail(auth, email); alert('메일이 전송되었습니다.'); } catch (error) { console.log(error.code, error.message); a

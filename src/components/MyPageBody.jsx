@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { MyWritings, MypageBody } from 'style/MypageStyles';
 
 export default function MyPageBody() {
-    const postList = useSelector((state) => state.postList);
+    const postList = useSelector((state) => state.post.postList);
     return (
         <MypageBody>
             {postList.map((postCard) => {

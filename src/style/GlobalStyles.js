@@ -1,8 +1,17 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
+import GiantsInline from '../fonts/Giants-Inline.otf';
+
 export const GlobalStyles = createGlobalStyle`
+    @font-face {
+    font-family: 'IM_Hyemin-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;}
+
     ${reset}
+
     a{
         text-decoration: none;
         color: inherit;
@@ -29,4 +38,10 @@ export const ContainerDiv = styled.div`
 export const MasterBtn = css`
     cursor: pointer;
     border: 0;
+`;
+export const TitleStyle = styled.div`
+    font-size: 2rem;
+    font-family: 'IM_Hyemin-Bold';
+    text-align: center;
+    cursor: pointer;
 `;
